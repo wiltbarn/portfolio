@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vanessa Barron</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #efeee8;
+    --cream-soft: #e7e5dd;
+    --ink: #26241f;
+    --ink-soft: #52504a;
+    --line: #26241f;
+    --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: inherit; }
+  html {
+    scroll-padding-top: env(safe-area-inset-top, 0px);
+    height: 100%;
+    overflow-x: hidden;
+  }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 64px);
+  }
+
+  /* ---------- Header / top bar ---------- */
+  header.site {
+    padding-top: clamp(24px, 4vw, 48px);
+    padding-bottom: clamp(16px, 3vw, 32px);
+  }
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .logo {
+    font-family: "Fraunces", serif;
+    font-weight: 900;
+    font-optical-sizing: auto;
+    font-size: clamp(2rem, 4.4vw, 3.3rem);
+    letter-spacing: -0.01em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  nav.primary {
+    display: flex;
+    gap: clamp(22px, 3vw, 42px);
+    flex-wrap: wrap;
+  }
+  .nav-item {
+    position: relative;
+  }
+  .nav-link {
+    display: inline-block;
+    position: relative;
+    padding: 6px 2px;
+    font-size: clamp(1.05rem, 1.3vw, 1.3rem);
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: 0px;
+    height: 2px;
+    background: var(--ink);
+  }
+  .nav-item:hover .nav-link,
+  .nav-item:focus-within .nav-link,
+  .nav-link:focus-visible {
+    /* simulate a bolder weight with a text stroke instead of switching
+       font-weight, so the glyphs don't get wider and shift later items */
+    text-shadow: 0.4px 0 currentColor, -0.4px 0 currentColor;
+  }
+  .nav-item:hover .nav-link::after,
+  .nav-item:focus-within .nav-link::after {
+    right: 0;
+  }
+  .nav-link:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  /* ---------- Nav dropdowns ---------- */
+  .dropdown {
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 0;
+    min-width: 140px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+    z-index: 30;
+  }
+  /* invisible bridge so the mouse can travel from link to menu without a gap */
+  .dropdown::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 0;
+    right: 0;
+    height: 14px;
+  }
+  .nav-item:hover .dropdown,
+  .nav-item:focus-within .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .dropdown li {
+    padding: 0;
+  }
+  .dropdown a {
+    display: block;
+    padding: 6px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-align: left;
+    white-space: nowrap;
+  }
+  .dropdown a:hover,
+  .dropdown a:focus-visible {
+    color: var(--ink);
+  }
+  .dropdown a:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  /* .dropdown-flip is toggled by the script below, only on items where a
+     left-justified menu would actually run past the viewport edge */
+  .nav-item .dropdown.dropdown-flip {
+    left: auto;
+    right: 0;
+  }
+
+  @media (max-width: 520px) {
+    .nav-row { justify-content: center; text-align: center; }
+    .logo { width: 100%; text-align: center; }
+    nav.primary { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <div class="logo">vanessa barron</div>
+    <nav class="primary" aria-label="Primary">
+      <div class="nav-item">
+        <a class="nav-link" href="#about">About</a>
+        <ul class="dropdown">
+          <li><a href="#bio">Bio</a></li>
+          <li><a href="#resume">Resume</a></li>
+        </ul>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="#projects">Projects</a>
+        <ul class="dropdown">
+          <li><a href="#marketing">Marketing</a></li>
+          <li><a href="#writing">Writing</a></li>
+          <li><a href="#radio">Radio</a></li>
+        </ul>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="#blog">Blog</a>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="#contact">Contact</a>
+        <ul class="dropdown">
+          <li><a href="#email">Email</a></li>
+          <li><a href="#socials">Socials</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Page body goes here. -->
+<main>
+
+</main>
+
+<script>
+  // Left-justify every nav dropdown by default; only flip a menu to the
+  // right if a left-justified position would clip past the viewport edge.
+  function positionDropdowns() {
+    document.querySelectorAll('.dropdown').forEach(function (dd) {
+      dd.classList.remove('dropdown-flip');
+      var rect = dd.getBoundingClientRect();
+      if (rect.right > window.innerWidth - 12) {
+        dd.classList.add('dropdown-flip');
+      }
+    });
+  }
+  window.addEventListener('load', positionDropdowns);
+  window.addEventListener('resize', positionDropdowns);
+</script>
+</body>
+</html>
