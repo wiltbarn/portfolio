@@ -178,7 +178,7 @@ a.more{text-decoration:none;display:block}
       <h3 class="group-title">Current role</h3>
       <div class="row">
         <div class="when">Jan 2026 – Present</div>
-        <div><h4 class="role">Email/SMS Marketing Specialist &amp; Copywriter</h4><p class="org">Singular Sound · Remote</p><ul><li>Grew baseline email/SMS revenue 38%, averaging $51K/month vs $37K the prior year</li><li>Rebuilt automated journey flows from $4K to an average of $37K monthly, driving 72% of channel revenue</li><li>Increased SMS revenue 65% YoY and grew the SMS list 21%</li><li>Led migration to Klaviyo for email while managing Attentive for SMS, running 60+ campaigns since January</li><li>Reversed a declining email list, growing it by 1,850+ net contacts since January</li></ul></div>
+        <div><h4 class="role">Email &amp; SMS Marketing Specialist and Copywriter</h4><p class="org">Singular Sound · Remote</p><ul><li>Grew baseline email and SMS revenue 38%, averaging $51K/month vs $37K the prior year</li><li>Rebuilt automated journey flows from $4K to an average of $37K monthly, driving 72% of channel revenue</li><li>Increased SMS revenue 65% YoY and grew the SMS list 21%</li><li>Led migration to Klaviyo for email while managing Attentive for SMS, running 60+ campaigns since January</li><li>Reversed a declining email list, growing it by 1,850+ net contacts since January</li></ul></div>
       </div>
     </div>
     <div class="group">
@@ -190,12 +190,12 @@ a.more{text-decoration:none;display:block}
     </div>
     <div class="group">
       <h3 class="group-title">Skills</h3>
-      <div class="chips"><span>Copywriting</span><span>Campaigns</span><span>Content</span><span>Email/SMS marketing</span><span>Automation</span><span>[Add a skill]</span></div>
+      <div class="chips"><span>Copywriting</span><span>Campaigns</span><span>Content</span><span>Email &amp; SMS marketing</span><span>Automation</span><span>[Add a skill]</span></div>
     </div>
     <div class="group">
       <h3 class="group-title">Resumes</h3>
       <div class="resume-links">
-        <article class="card"><h3>Marketing resume</h3><p>Email/SMS, campaigns, and copy.</p><a class="more" href="#" target="_blank" rel="noopener" aria-label="Open Marketing resume">Open →</a></article>
+        <article class="card"><h3>Marketing resume</h3><p>Email and SMS campaigns, plus copy.</p><a class="more" href="#" target="_blank" rel="noopener" aria-label="Open Marketing resume">Open →</a></article>
         <article class="card"><h3>Writing resume</h3><p>Articles, editorial, and content.</p><a class="more" href="#" target="_blank" rel="noopener" aria-label="Open Writing resume">Open →</a></article>
         <article class="card"><h3>Complete CV</h3><p>Full work and education history.</p><a class="more" href="#" target="_blank" rel="noopener" aria-label="Open Complete CV">Open →</a></article>
       </div>
@@ -227,7 +227,7 @@ a.more{text-decoration:none;display:block}
 // Edit this list: replace [bracketed] text, add real links (h), results, and images.
 // img: card image (data URI). shots: list of {src:"data:image/...", cap:"caption"}; items without src show a placeholder box.
 const PROJECTS=[
- {g:"Marketing",t:"Email/SMS campaigns",c:"#2c4a37",cap:"Result: [add headline metric]",text:"[One or two sentences: what the campaigns were, your role, and the audience.]",results:"[Add results, e.g. open rate, click rate, revenue.]",shots:[{cap:"[Screenshot or graph]"},{cap:"[Screenshot or graph]"}],links:[]},
+ {g:"Marketing",t:"Email & SMS campaigns",c:"#2c4a37",href:"https://claude.ai/artifact/HXifpbHctE7wE4mbxYTfbE",cap:"Result: [add headline metric]",text:"[One or two sentences: what the campaigns were, your role, and the audience.]",results:"[Add results, e.g. open rate, click rate, revenue.]",shots:[{cap:"[Screenshot or graph]"},{cap:"[Screenshot or graph]"}],links:[]},
  {g:"Marketing",t:"Automation bot",c:"#a8a68a",cap:"In progress: results coming soon.",text:"[One or two sentences on what the bot automates and the problem it solves.]",results:"Results coming soon.",shots:[{cap:"[Screenshot]"},{cap:"[Screenshot]"}],links:[]},
  {g:"Marketing",t:"Gear Tribune Blog",c:"#4d6b57",cap:"Result: [add headline metric]",text:"[One or two sentences on the blog, your role, and who it's for.]",results:"[Add results, e.g. traffic, subscribers.]",shots:[{cap:"[Screenshot or graph]"},{cap:"[Screenshot or graph]"}],links:[{l:"Visit the blog",h:"#"}]},
  {g:"Writing",t:"Tasting Table",c:"#cfcdb8",cap:"[Paste a short preview line.]",text:"[Preview text from a standout article.]",links:[{l:"[Article title]",h:"#"},{l:"[Article title]",h:"#"}]},
@@ -241,8 +241,8 @@ const groups=document.getElementById("groups"),dlg=document.getElementById("dlg"
   const box=el(`<div class="group${small?" small":""}" id="${g.toLowerCase()}"><h3 class="group-title">${small?"Radio, on the side":g}</h3><div class="grid"></div></div>`);
   PROJECTS.forEach((p,i)=>{ if(p.g!==g) return;
     const thumb=small?"":`<div class="thumb" style="background:${p.c}">${p.img?`<img src="${p.img}" alt="">`:""}</div>`;
-    const c=el(`<article class="card${small?" compact":""}">${thumb}<h3>${p.t}</h3><p>${p.cap}</p><button class="more" type="button" aria-label="Learn more about ${p.t}">Learn more →</button></article>`);
-    c.querySelector(".more").onclick=()=>openProject(i);
+    const c=el(`<article class="card${small?" compact":""}">${thumb}<h3>${p.t}</h3><p>${p.cap}</p>${p.href?`<a class="more" href="${p.href}" target="_blank" rel="noopener" aria-label="Learn more about ${p.t}">Learn more →</a>`:`<button class="more" type="button" aria-label="Learn more about ${p.t}">Learn more →</button>`}</article>`);
+    if(!p.href) c.querySelector(".more").onclick=()=>openProject(i);
     box.querySelector(".grid").appendChild(c);
   });
   groups.appendChild(box);
