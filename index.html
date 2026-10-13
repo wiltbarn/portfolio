@@ -227,7 +227,7 @@ a.more{text-decoration:none;display:block}
 // Edit this list: replace [bracketed] text, add real links (h), results, and images.
 // img: card image (data URI). shots: list of {src:"data:image/...", cap:"caption"}; items without src show a placeholder box.
 const PROJECTS=[
- {g:"Marketing",t:"Email & SMS campaigns",c:"#2c4a37",href:"https://claude.ai/artifact/HXifpbHctE7wE4mbxYTfbE",cap:"Result: [add headline metric]",text:"[One or two sentences: what the campaigns were, your role, and the audience.]",results:"[Add results, e.g. open rate, click rate, revenue.]",shots:[{cap:"[Screenshot or graph]"},{cap:"[Screenshot or graph]"}],links:[]},
+ {g:"Marketing",t:"Email & SMS campaigns",c:"#2c4a37",href:"/email-sms-campaigns",cap:"Result: [add headline metric]",text:"[One or two sentences: what the campaigns were, your role, and the audience.]",results:"[Add results, e.g. open rate, click rate, revenue.]",shots:[{cap:"[Screenshot or graph]"},{cap:"[Screenshot or graph]"}],links:[]},
  {g:"Marketing",t:"Automation bot",c:"#a8a68a",cap:"In progress: results coming soon.",text:"[One or two sentences on what the bot automates and the problem it solves.]",results:"Results coming soon.",shots:[{cap:"[Screenshot]"},{cap:"[Screenshot]"}],links:[]},
  {g:"Marketing",t:"Gear Tribune Blog",c:"#4d6b57",cap:"Result: [add headline metric]",text:"[One or two sentences on the blog, your role, and who it's for.]",results:"[Add results, e.g. traffic, subscribers.]",shots:[{cap:"[Screenshot or graph]"},{cap:"[Screenshot or graph]"}],links:[{l:"Visit the blog",h:"#"}]},
  {g:"Writing",t:"Tasting Table",c:"#cfcdb8",cap:"[Paste a short preview line.]",text:"[Preview text from a standout article.]",links:[{l:"[Article title]",h:"#"},{l:"[Article title]",h:"#"}]},
@@ -241,7 +241,7 @@ const groups=document.getElementById("groups"),dlg=document.getElementById("dlg"
   const box=el(`<div class="group${small?" small":""}" id="${g.toLowerCase()}"><h3 class="group-title">${small?"Radio, on the side":g}</h3><div class="grid"></div></div>`);
   PROJECTS.forEach((p,i)=>{ if(p.g!==g) return;
     const thumb=small?"":`<div class="thumb" style="background:${p.c}">${p.img?`<img src="${p.img}" alt="">`:""}</div>`;
-    const c=el(`<article class="card${small?" compact":""}">${thumb}<h3>${p.t}</h3><p>${p.cap}</p>${p.href?`<a class="more" href="${p.href}" target="_blank" rel="noopener" aria-label="Learn more about ${p.t}">Learn more →</a>`:`<button class="more" type="button" aria-label="Learn more about ${p.t}">Learn more →</button>`}</article>`);
+    const c=el(`<article class="card${small?" compact":""}">${thumb}<h3>${p.t}</h3><p>${p.cap}</p>${p.href?`<a class="more" href="${p.href}" aria-label="Learn more about ${p.t}">Learn more →</a>`:`<button class="more" type="button" aria-label="Learn more about ${p.t}">Learn more →</button>`}</article>`);
     if(!p.href) c.querySelector(".more").onclick=()=>openProject(i);
     box.querySelector(".grid").appendChild(c);
   });
